@@ -1,0 +1,15 @@
+langchain
+langchain-community
+langchain_unstructured
+unstructured_client
+unstructured
+unstructured[pdf]
+python-magic
+streamlit
+requests
+faiss-cpu
+langchain_google_genai
+langchain_groq
+httpx
+unstructured_client
+requests
