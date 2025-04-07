@@ -22,6 +22,14 @@
 - **AI & NLP**: LLM APIs, Text Summarization, Question Generation, **Groq**  
 - **Document Parsing**: **Unstructured** for PDF, TXT, DOCX, images, and email parsing
 
+## Demo Video
+
+▶️ Watch the Demo: [Lecture AI Assistant – Video Demo](https://drive.google.com/file/d/15nvdDYuf-kkKa6avhMdMp5RztvxSyrgR/view?usp=drive_link)
+
+## Try the Live App
+
+🚀 Explore the Deployed App: [Lecture AI Assistant – Streamlit App](https://docsummariser-mywzqmjoqbjdihesrw2gzm.streamlit.app/)
+
 ## Getting Started
 
 > ⚠️ **Note**: Some dependencies may not be compatible with **Python 3.13**. It is recommended to use **Python 3.10 or 3.11** for best compatibility.
