@@ -464,6 +464,15 @@ else:
                                 file_state["quiz_score"] = f"{correct_count} / {len(file_state['quiz'])}"
                                 st.rerun()
 
+                # Function to clean the answer (remove starting option letter manually)
+                def clean_answer(ans):
+                    ans = str(ans).strip().lower()
+                    parts = ans.split(" ", 1)
+                    if len(parts) == 2 and len(parts[0]) == 1 and parts[0].isalpha():
+                        return parts[1].strip()
+                    return ans
+
+
                 # ✅ Move the "See Correct Answers" Expander Outside
                 if file_state["quiz_submitted"]:
                     st.success(f"🎯 Your Score: {file_state['quiz_score']}")
@@ -472,29 +481,24 @@ else:
                         for i, q in enumerate(file_state["quiz"]):
                             st.write(f"**Q{i+1}: {q['question']}**")
 
-                            # Display user's answer
                             user_answer = file_state["user_answers"].get(i, "Not answered")
                             correct_letter = q["answer"]
                             correct_text = q["options"][ord(correct_letter) - 65]
-                            
-                            # Extract just the text portion for comparison (without the letter)
-                            correct_answer_text = correct_text.split(maxsplit=1)[-1] if " " in correct_text else correct_text
-                            
-                            # Check if user's answer matches the correct text (percentage value)
-                            is_correct = str(user_answer).strip() == correct_answer_text.strip()
-                            
-                            # Display user's answer with color coding
+
+                            is_correct = clean_answer(user_answer) == clean_answer(correct_text)
+
+                            # Show user answer
                             if user_answer == "Not answered":
                                 st.write(f"**Your Answer:** ❌ {user_answer}")
                             elif is_correct:
                                 st.write(f"**Your Answer:** ✅ {user_answer} (Correct)")
                             else:
-                                st.write(f"**Your Answer:** ❌ {user_answer} (Should be: {correct_answer_text})")
-                            
-                            # Display full correct answer (with letter)
-                            st.write(f"**Correct Answer:** {correct_letter} {correct_text}")
-                            
-                            # Add some space between questions
+                                st.write(f"**Your Answer:** ❌ {user_answer}")
+
+                            # Show clean correct answer (without letter)
+                            correct_answer_text = clean_answer(correct_text).capitalize()
+                            st.write(f"**Correct Answer:** {correct_answer_text}")
+
                             st.write("---")
 
                     if file_state["quiz_score"] == f"{len(file_state['quiz'])} / {len(file_state['quiz'])}":
